@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>страница авторизации</title>
-</head>
-<body>
-	<form action="authorization.php" method="post" align=center>
-		<p><input type="text" name="login" placeholder="login" align="center"></p>
-		<p><input type="password" name="pass" placeholder="password" align="center"></p>
-		<p><input type="submit" value="Отправить"></p>
-	</form>
-</body>
+	<head>
+		<link rel="stylesheet" type="text/css" href="login.css">
+		<title>Страница авторизации</title>
+	</head>
+	<body>
+		<div class="header">
+			<p><a href="#">Главная страница</a></p>
+			<p><a href="#">Список курсов</a></p>
+			<p><a href="#">Создать свой курс</a></p>
+			<p><a href="#">Выйти</a></p>
+		</div>
+		<div class="main">
+			<div class="right-menu">
+				<div class="form">
+					<form class="login-form">
+						<input type="text" placeholder="логин"/>
+						<input type="password" placeholder="пароль"/>
+						<button>Авторизация</button>
+						<p class="message">Не зарегистрированы? <br><a href="#">Создайте пользователя!</a></p>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<p>МГТУ имени Н.Э.Баумана - ИУ4-13Б - Косьянов Олег Вячеславич</p>
+		</div>
+	</body>
 </html>

@@ -1,0 +1,118 @@
+ html{
+ 	background-image:url(menu.png);
+	background-repeat: repeat-y;
+	background-position: left;
+	overflow-x: hidden; 
+ }
+ body{
+ 	margin: 0;
+ }
+
+ .header {
+ 	font-family: sans-serif;
+ 	font-size: 15px;
+ 	display: block;
+	margin: 0;
+	padding: 16px; 
+	width: 100%;
+	background-color: #f1f1f1; 
+	overflow: auto; 
+	height: 85%;
+}
+
+.header p{
+	float: left;
+	display: inline-block;
+	margin: 0;
+}
+
+.header a {
+	display: inline;
+	color: #000;;
+	padding: 8px 16px; 
+	text-decoration: none; 
+}
+
+.header a.active { 
+	background-color: #4CAF50; 
+	color: white; 
+}
+
+ .header a:hover:not(.active) { 
+ 	background-color: #555; 
+ 	color: white
+ }
+
+  .main {
+ 	display: block;
+ 	width: 100%;
+ 	margin: 0 0 10% 0;
+ }
+
+.right-menu {
+	background-image:url(menu.png);
+	display: inline-block;
+	width: 250px;
+	padding:0;
+	background-repeat: repeat-y;
+}
+
+.form {
+	max-width: 230px;
+	margin: 0 auto ;
+	padding: 15px;
+	text-align: center;
+}
+
+.form input {
+	border: 3px solid green;
+	font-family: sans-serif;
+	background: #f2f2f2;
+	width: 100%;
+	margin: 0 0 15px;
+	padding: 15px;
+	box-sizing: border-box;
+	font-size: 12px;
+}
+
+.form button {
+	font-family:sans-serif;
+	text-transform: uppercase;
+	background: #4CAF50;
+	width: 100%;
+	border: 0;
+	padding: 15px;
+	color: #FFFFFF;
+	font-size: 14px;
+	cursor: pointer;
+}
+	
+.form button:hover,.form button:active,.form button:focus {
+	background: #43A047;
+}
+
+.form .message {
+	font-family: sans-serif;
+	margin: 15px 0 0;
+	color: #b3b3b3;
+	font-size: 12px;
+}
+
+.form .message a {
+	color: #4CAF50;
+}
+
+#footer {
+	position: fixed;
+	font-size: 14px;
+	font-family: sans-serif;
+	bottom: 0;
+	padding: 5px; 
+	background: #39b54a;
+	color: #fff;
+	width: 100%;
+}
+
+#footer p {
+	margin: 0 auto;
+}
