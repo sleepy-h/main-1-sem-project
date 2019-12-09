@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	require('db.php');
 	$regexp = ["email" => "/^((([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я\.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/u",
 		"password" => "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[%\$#@&\*\^\|\/~\{\}\[\]\\\])[A-Za-z\d%\$#@&\*\^\|\/~\{\}\[\]\\\]{8,}$/",
@@ -35,7 +36,7 @@
 								$_SESSION['password']=md5($password1);
 								header('Location: index.php');
 								} else {
-									show_page("Error: " . $sql . "</p><p>" . $conn->error. "<br>");
+									show_page("Error: " . $sql . "</p><p>" . $conn->error);
 								}
 							}
 						}

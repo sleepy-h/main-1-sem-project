@@ -1,6 +1,7 @@
 <?php
 require('db.php');
 session_start();
+echo $_SESSION['login'].' '.$_SESSION['password'];
 if (isset($_POST['username']) or isset($_SESSION['username'])) {
 	if (isset($_POST['username'])) {
 		$username = stripslashes($_REQUEST['username']);
@@ -20,14 +21,16 @@ if (isset($_POST['username']) or isset($_SESSION['username'])) {
 				print_r($result2->fetch_row());//set $session values and show user page
 			} else {
 				show_page('неправильная почта и пароль');	
-				$_SESSION['login'] = '';
-				$_SESSION['password'] = '';
 			}
 		}
 	} else {
 		$query= "SELECT * FROM `accounts` WHERE email='".$_SESSION['username']."' and password='".$_SESSION['password']."';";
 		if (($conn->query($query))->num_rows){
 			// show user page 
+		} else {
+			show_page('неправильная почта и пароль');
+			$_SESSION['login'] = '';
+			$_SESSION['password'] = '';
 		}
 	}
 } else {
