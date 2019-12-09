@@ -1,8 +1,7 @@
 <?php
 require('db.php');
 session_start();
-echo $_SESSION['login'].' '.$_SESSION['password'];
-if (isset($_POST['username']) or isset($_SESSION['username'])) {
+if (isset($_POST['username']) or isset($_SESSION['login'])) {
 	if (isset($_POST['username'])) {
 		$username = stripslashes($_REQUEST['username']);
  		$username = mysqli_real_escape_string($conn,$username);
@@ -24,8 +23,9 @@ if (isset($_POST['username']) or isset($_SESSION['username'])) {
 			}
 		}
 	} else {
-		$query= "SELECT * FROM `accounts` WHERE email='".$_SESSION['username']."' and password='".$_SESSION['password']."';";
+		$query= "SELECT * FROM `accounts` WHERE login='".$_SESSION['login']."' and password='".$_SESSION['password']."';";
 		if (($conn->query($query))->num_rows){
+			echo "session authorizate";
 			// show user page 
 		} else {
 			show_page('неправильная почта и пароль');
