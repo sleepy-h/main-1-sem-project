@@ -18,47 +18,23 @@ if (isset($_POST['username']) or isset($_SESSION['username'])) {
 			if ($result2->num_rows){
 				echo "res2";
 				print_r($result2->fetch_row());//set $session values and show user page
-			} else {?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="index.css">
-		<title>Главная страница</title>
-	</head>
-	<body>
-		<div class="header">
-			<p><a href="/">Главная страница</a></p>
-			<p><a href="#">Список курсов</a></p>
-			<p><a href="#">Создать свой курс</a></p>
-			<p><a href="#">Выйти</a></p>
-		</div>
-		<div class="main">
-			<div class="right-menu">	
-				<div class="form">
-					<form class="login-form">
-						<input type="text" placeholder="Почта" name="username" />
-						<input type="password" placeholder="Пароль" name="password" />
-						<button>Авторизация</button>
-						<p>неправильная почта и пароль</p>
-						<p class="message">Не зарегистрированы? <br><a href="registration.php">Создайте пользователя!</a></p>
-					</form>
-				</div>
-			</div>
-		</div>
-		<div id="footer">
-			<p>МГТУ имени Н.Э.Баумана - ИУ4-13Б - Косьянов Олег Вячеславич</p>
-		</div>
-	</body>
-</html>
-			<?php
-			$_SESSION['login'] = '';
-			$_SESSION['password'] = '';
+			} else {
+				show_page('неправильная почта и пароль');	
+				$_SESSION['login'] = '';
+				$_SESSION['password'] = '';
 			}
 		}
 	} else {
-		// show user page 
+		$query= "SELECT * FROM `accounts` WHERE email='".$_SESSION['username']."' and password='".$_SESSION['password']."';";
+		if (($conn->query($query))->num_rows){
+			// show user page 
+		}
 	}
-} else {?>
+} else {
+	show_page('');
+}
+function show_page($error){
+	echo' 
 <!DOCTYPE html>
 <html>
 	<head>
@@ -75,10 +51,12 @@ if (isset($_POST['username']) or isset($_SESSION['username'])) {
 		<div class="main">
 			<div class="right-menu">	
 				<div class="form">
-					<form class="login-form">
+					<form class="login-form" method="POST">
 						<input type="text" placeholder="Почта" name="username" />
 						<input type="password" placeholder="Пароль" name="password" />
-						<button>Авторизация</button>
+						<button>Авторизация</button>';
+						echo "<p class='message'>".$error."</p>";
+						echo '
 						<p class="message">Не зарегистрированы? <br><a href="registration.php">Создайте пользователя!</a></p>
 					</form>
 				</div>
@@ -88,7 +66,6 @@ if (isset($_POST['username']) or isset($_SESSION['username'])) {
 			<p>МГТУ имени Н.Э.Баумана - ИУ4-13Б - Косьянов Олег Вячеславич</p>
 		</div>
 	</body>
-</html>
-<?php
+</html>';
 }
 ?>
