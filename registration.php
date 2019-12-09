@@ -33,7 +33,7 @@
 								if($conn->query($sql) === TRUE){
 								$_SESSION['login']=$login;
 								$_SESSION['password']=md5($password1);
-								header('Location: index.php;');
+								header('Location: index.php');
 								} else {
 									show_page("Error: " . $sql . "</p><p>" . $conn->error. "<br>");
 								}
@@ -46,7 +46,7 @@
 					show_page("Ошибка:неправильный логин.Логин состоит минимум из 6 символов, состоящее из латинских букв, цифр, и символа '_'.Обязательно начинается с латинской букв.");
 				}
 			} else {
-			show_page("Ошибка:неправильный пароль.Необходимо минимум 8 символов, где одна строчная и одна заглавная буква и одна цифра");
+			show_page("Ошибка:неправильный пароль.Необходимо минимум 8 символов, где одна строчная и одна заглавная буква и одна цифра и один спец символ (%,$,#,@,&,*,,^,|,/,~,{,},[,],\)");
 			} 
 		} else {
 			show_page("Ошибка:неправильная почта.");
@@ -82,7 +82,7 @@ function show_page($error){
 						<input type="password" placeholder="Пароль" name="password1">
 						<input type="password" placeholder="Повторите Пароль" name="password2">
 						<button>Регистрация</button>';
-	echo '<p>'.$error.'</p>';
+	echo '<p class="error">'.$error.'</p>';
 	echo'
 					</form>
 				</div>

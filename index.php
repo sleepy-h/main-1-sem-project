@@ -55,7 +55,7 @@ function show_page($error){
 						<input type="text" placeholder="Почта" name="username" />
 						<input type="password" placeholder="Пароль" name="password" />
 						<button>Авторизация</button>';
-						echo "<p class='message'>".$error."</p>";
+						echo "<p class='error'>".$error."</p>";
 						echo '
 						<p class="message">Не зарегистрированы? <br><a href="registration.php">Создайте пользователя!</a></p>
 					</form>

@@ -82,6 +82,13 @@
 	background: #43A047;
 }
 
+.form .error {
+	font-family: sans-serif;
+	margin: 15px 0 0;
+	color: #DC143C;
+	font-size: 12px;
+}
+
 #footer {
 	position: fixed;
 	font-size: 14px;
