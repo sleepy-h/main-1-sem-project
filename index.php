@@ -45,8 +45,8 @@ if (isset($_POST['username']) or isset($_SESSION['login'])) {
 			// show user page 
 		} else {
 			show_page_nlog('неправильная почта и пароль');
-			$_SESSION['login'] = '';
-			$_SESSION['password'] = '';
+			unset($_SESSION['login']);
+			unset($_SESSION['password']);
 		}
 	}
 } else {
@@ -79,6 +79,13 @@ function show_page_nlog($error){
 					</form>
 				</div>
 			</div>
+			<div class="main-menu">
+				<form class="intro">
+					<h2>Добро пожаловать на leсture-hall</h2>
+					<h4>Мы поможем вам познать новое или стать учителем других падаванов.Открывайте для себя новые горизонты познания, приобретая современые знания, позволяющие вам реализовать все свои мечты.</h4>
+					<h3>Вперед за мечтой, падаван.</h3>
+				</form>
+			</div>
 		</div>
 		<div id="footer">
 			<p>МГТУ имени Н.Э.Баумана - ИУ4-13Б - Косьянов Олег Вячеславич</p>
@@ -99,7 +106,7 @@ function show_page_log(){
 			<p><a href="#">Список курсов</a></p>
 			<p><a href="#">Создать свой курс</a></p>
 			<p><a href="#">Настройки</a></p>
-			<p><a href="#">Выйти</a></p>
+			<p><a href="logout.php">Выйти</a></p>
 		</div>
 		<div class="main">
 			<div class="right-menu">
