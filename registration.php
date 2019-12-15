@@ -32,9 +32,16 @@
 								$sql = "INSERT into `accounts` (status , email , login , password, surname,name,university, department, sity, country)
 									VALUES (2,'$email','$login','".md5($password1)."','$surname','$name','','','','');";
 								if($conn->query($sql) === TRUE){
+								$_SESSION['email']=$email;
 								$_SESSION['login']=$login;
 								$_SESSION['password']=md5($password1);
-								header('Location: index.php');
+								$_SESSION['name']=$name;
+								$_SESSION['surname']=$surname;
+								$_SESSION['university']='';
+								$_SESSION['country']='';
+								$_SESSION['department']='';
+								$_SESSION['city']='';
+								header('Location: /');
 								} else {
 									show_page("Error: " . $sql . "</p><p>" . $conn->error);
 								}
@@ -70,7 +77,6 @@ function show_page($error){
 				<p><a href="/">Главная страница</a></p>
 				<p><a href="#">Список курсов</a></p>
 				<p><a href="#">Создать свой курс</a></p>
-				<p><a href="#">Выйти</a></p>
 			</div>
 			<div class="main">
 				<div class="form">

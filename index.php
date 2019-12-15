@@ -13,25 +13,27 @@ if (isset($_POST['username']) or isset($_SESSION['login'])) {
 		$result2 = $conn->query($query2);
 		if($result1->num_rows) {
 			$res=$result1->fetch_row();//set $session values and show user page
+			$_SESSION['email']=$res[2];
 			$_SESSION['login']=$res[3];
 			$_SESSION['password']=$res[4];
 			$_SESSION['name']=$res[6];
 			$_SESSION['surname']=$res[5];
 			$_SESSION['university']=$res[7];
 			$_SESSION['country']=$res[10];
-			$_SESSION['departament']=$res[8];
+			$_SESSION['department']=$res[8];
 			$_SESSION['city']=$res[9];
 			show_page_log();
 		} else {
 			if ($result2->num_rows){
 				$res=$result2->fetch_row();//set $session values and show user page
+				$_SESSION['email']=$res[2];
 				$_SESSION['login']=$res[3];
 				$_SESSION['password']=$res[4];
 				$_SESSION['name']=$res[6];
 				$_SESSION['surname']=$res[5];
 				$_SESSION['university']=$res[7];
 				$_SESSION['country']=$res[10];
-				$_SESSION['departament']=$res[8];
+				$_SESSION['department']=$res[8];
 				$_SESSION['city']=$res[9];
 				show_page_log();
 			} else {
@@ -39,14 +41,17 @@ if (isset($_POST['username']) or isset($_SESSION['login'])) {
 			}
 		}
 	} else {
-		$query= "SELECT * FROM `accounts` WHERE login='".$_SESSION['login']."' and password='".$_SESSION['password']."';";
+			$login = stripslashes($_SESSION['login']);
+ 			$login = mysqli_real_escape_string($conn,$login);
+ 			$password = stripslashes($_SESSION['password']);
+ 			$password = mysqli_real_escape_string($conn,$password);
+			$query= "SELECT * FROM `accounts` WHERE login='$login' and password='$password';";
 		if (($conn->query($query))->num_rows){
 			show_page_log();
 			// show user page 
 		} else {
+			session_unset();
 			show_page_nlog('неправильная почта и пароль');
-			unset($_SESSION['login']);
-			unset($_SESSION['password']);
 		}
 	}
 } else {
@@ -105,7 +110,7 @@ function show_page_log(){
 			<p><a href="/">Главная страница</a></p>
 			<p><a href="#">Список курсов</a></p>
 			<p><a href="#">Создать свой курс</a></p>
-			<p><a href="#">Настройки</a></p>
+			<p><a href="settings.php">Настройки</a></p>
 			<p><a href="logout.php">Выйти</a></p>
 		</div>
 		<div class="main">
@@ -114,7 +119,7 @@ function show_page_log(){
 					<form class="account-form" style="font-family: sans-serif;">
 						<h3 style="color: black;" >'.$_SESSION['login'].'</h3>
 						<h5 style="color: gray;">'.$_SESSION['surname'].' '.$_SESSION['name'].'</h5>
-						<h5 style="color: gray;">'.$_SESSION['university'].' / '.$_SESSION['departament'].'</h5>
+						<h5 style="color: gray;">'.$_SESSION['university'].' / '.$_SESSION['department'].'</h5>
 						<h5 style="color: gray;">'.$_SESSION['country'].' / '.$_SESSION['city'].'</h5>
 						<P>----</P>
 						<P>----</P>

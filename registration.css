@@ -35,15 +35,15 @@
 	color: white; 
 }
 
- .header a:hover:not(.active) { 
+.header a:hover:not(.active) { 
  	background-color: #555; 
  	color: white
  }
 
-  .main {
+.main {
  	display: block;
  	width: 100%;
- 	margin: 0 0 10% 0;
+ 	margin: 0 0 26px 0;
  }
 .form h3{
 	font-family: sans-serif;

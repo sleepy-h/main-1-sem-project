@@ -16,7 +16,7 @@
   `name` varchar(20) NOT NULL,
   `university`  varchar(20),
   `department` varchar(7),
-  `sity` varchar(20),
+  `city` varchar(20),
   `country` varchar(20),
   PRIMARY KEY (`id`)
 )DEFAULT charset=utf8;";
