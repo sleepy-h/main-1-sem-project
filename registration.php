@@ -2,7 +2,7 @@
 	session_start();
 	require('db.php');
 	$regexp = ["email" => "/^((([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я\.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/u",
-		"password" => "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[%\$#@&\*\^\|\/~\{\}\[\]\\\])[A-Za-z\d%\$#@&\*\^\|\/~\{\}\[\]\\\]{8,}$/",
+		"password" => "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/",
 		"login" => "/^([A-Za-z]{1})([A-Za-z\d\_]{5,})$/"];
 	if (isset($_REQUEST['name'])){
 		$name = stripslashes($_REQUEST['name']);
@@ -26,10 +26,10 @@
 							show_page("Ошибка:на данную почту есть зарегистрированный аккаунт.");
 						} else {
 							$sql = "SELECT * FROM `accounts` WHERE `login`='$login';";
-							if (($conn->query($sql))->num_rows){
+							if (($conn->query($sql))->num_rows) {
 								show_page("Ошибка:данный логин уже используется.");
 							} else {
-								$sql = "INSERT into `accounts` (status , email , login , password, surname,name,university, department, sity, country)
+								$sql = "INSERT into `accounts` (status , email , login , password, surname,name,university, department, city, country)
 									VALUES (2,'$email','$login','".md5($password1)."','$surname','$name','','','','');";
 								if($conn->query($sql) === TRUE){
 								$_SESSION['email']=$email;
@@ -54,7 +54,7 @@
 					show_page("Ошибка:неправильный логин.Логин состоит минимум из 6 символов, состоящее из латинских букв, цифр, и символа '_'.Обязательно начинается с латинской букв.");
 				}
 			} else {
-			show_page("Ошибка:неправильный пароль.Необходимо минимум 8 символов, где одна строчная и одна заглавная буква и одна цифра и один спец символ (%,$,#,@,&,*,,^,|,/,~,{,},[,],\)");
+			show_page("Ошибка:неправильный пароль.Необходимо минимум 8 символов, где одна строчная и одна заглавная буква и одна цифра");
 			} 
 		} else {
 			show_page("Ошибка:неправильная почта.");
