@@ -22,6 +22,7 @@ if (isset($_POST['username']) or isset($_SESSION['login'])) {
 			$_SESSION['country']=$res[10];
 			$_SESSION['department']=$res[8];
 			$_SESSION['city']=$res[9];
+			$_SESSION['photopath']=$res[11];
 			show_page_log();
 		} else {
 			if ($result2->num_rows){
@@ -35,6 +36,7 @@ if (isset($_POST['username']) or isset($_SESSION['login'])) {
 				$_SESSION['country']=$res[10];
 				$_SESSION['department']=$res[8];
 				$_SESSION['city']=$res[9];
+				$_SESSION['photopath']=$res[11];
 				show_page_log();
 			} else {
 				show_page_nlog('неправильная почта и пароль');	
@@ -77,9 +79,8 @@ function show_page_nlog($error){
 					<form class="login-form" method="POST">
 						<input type="text" placeholder="Почта" name="username" />
 						<input type="password" placeholder="Пароль" name="password" />
-						<button>Авторизация</button>';
-						echo "<p class='error'>".$error."</p>";
-						echo '
+						<button>Авторизация</button>
+						<p class="error">'.$error.'</p>
 						<p class="message">Не зарегистрированы? <br><a href="registration.php">Создайте пользователя!</a></p>
 					</form>
 				</div>
@@ -121,10 +122,7 @@ function show_page_log(){
 						<h5 style="color: gray;">'.$_SESSION['surname'].' '.$_SESSION['name'].'</h5>
 						<h5 style="color: gray;">'.$_SESSION['university'].' / '.$_SESSION['department'].'</h5>
 						<h5 style="color: gray;">'.$_SESSION['country'].' / '.$_SESSION['city'].'</h5>
-						<P>----</P>
-						<P>----</P>
-						<P>----</P>
-						<P>----</P>
+						<img src="'.$_SESSION['photopath'].'" alt="" />
 						<h4>Top 5 your corses:</h4>
 						<ol style="color: green;">
 							<li>first</li>

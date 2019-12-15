@@ -168,6 +168,24 @@
 				exit();
 			}
 		}
+		if( !empty( $_FILES['image']['name'] ) ) {
+			$uploadname=basename($_FILES['image']['name']);
+			$uploadpath='files/'.md5(file_get_contents( $_FILES['image']['tmp_name']).'lecture').$uploadname;
+			if( substr($_FILES['image']['type'], 0, 5)=='image' ) {
+				if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadpath)) { //перемещение загруженного файла из временной папки сервера в папку, которую указали (uploadpath)
+	        		$sql="UPDATE accounts SET photopath='$uploadpath' WHERE login='$login_m' and password='$password';";//составляем запрос на запись в базу имя и путь к файлу
+	        		if($conn->query($sql) === TRUE){
+						$_SESSION['photopath'] = $uploadpath;
+						$message=$message.'<p class="message">Аватарка успешно изменена</p>';
+					} else {
+						show_page("<p class='error'>Error: " . $sql . "</p><p class='error'>" . $conn->error."</p>");
+						exit();
+					}
+				} else {
+					$message=$message."<p class='error'>Ошибка: проблема при загрузке файла<p>";
+				}
+			}
+		}
 	}
 	$conn->close();
 	show_page($message);
@@ -189,7 +207,7 @@
 				</div>
 				<div class="main">
 					<div class="form">
-						<form class="change-form" method="POST">
+						<form enctype="multipart/form-data" class="change-form" method="POST">
 							<h3>Страница Настройки</h3>
 							<p class="name_input">Имя</p>
 							<input type="text" placeholder="'.$_SESSION['name'].'" name="name">
@@ -234,6 +252,7 @@
 							<p class="name_input">Пароль</p>
 							<input type="password" placeholder="Пароль" name="password1">
 							<input type="password" placeholder="Повторите Пароль" name="password2">
+							<input type="file" name="image" />
 							<button>Изменить</button>';
 		echo $message;
 		echo'

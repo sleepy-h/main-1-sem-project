@@ -15,9 +15,10 @@
   `surname` varchar(20) NOT NULL,
   `name` varchar(20) NOT NULL,
   `university`  varchar(20),
-  `department` varchar(7),
+  `department` varchar(10),
   `city` varchar(20),
   `country` varchar(20),
+  `photopath` varchar(80), 
   PRIMARY KEY (`id`)
 )DEFAULT charset=utf8;";
 if ($conn->query($sql) === TRUE) {
@@ -25,8 +26,8 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error. "<br>";
 }
-	$sql="INSERT INTO `accounts`(`status`, `email`, `login`, `password`, `surname`, `name`, `university`, `department`, `sity`, `country`) VALUES 
-  (0,'cookie.witn.jam@gmail.com','sleepy','993d4cf31414bb99aaa2194ea970ba68','Kosyanov','Oleg','','','','');";
+	$sql="INSERT INTO `accounts`(`status`, `email`, `login`, `password`, `surname`, `name`, `university`, `department`, `city`, `country`,`photopath`) VALUES 
+  (0,'cookie.witn.jam@gmail.com','sleepy','993d4cf31414bb99aaa2194ea970ba68','Kosyanov','Oleg','','','','','files/ava.png');";
  if ($conn->query($sql) === TRUE) {
     echo "Insert value in table successfully". "<br>";
 } else {

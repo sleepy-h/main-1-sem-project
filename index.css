@@ -112,7 +112,12 @@
 	color: #DC143C;
 	font-size: 12px;
 }
+.form img{
+	border: 5px solid green;
+	border-radius: 10px;
+	width: 100px;
 
+}
 .main-menu {
 	font-size: 14px;
 	vertical-align: top;

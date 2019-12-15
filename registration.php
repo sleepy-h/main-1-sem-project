@@ -29,8 +29,8 @@
 							if (($conn->query($sql))->num_rows) {
 								show_page("Ошибка:данный логин уже используется.");
 							} else {
-								$sql = "INSERT into `accounts` (status , email , login , password, surname,name,university, department, city, country)
-									VALUES (2,'$email','$login','".md5($password1)."','$surname','$name','','','','');";
+								$sql = "INSERT into `accounts` (status , email , login , password, surname,name,university, department, city, country,photopath)
+									VALUES (2,'$email','$login','".md5($password1)."','$surname','$name','','','','','files/ava.png');";
 								if($conn->query($sql) === TRUE){
 								$_SESSION['email']=$email;
 								$_SESSION['login']=$login;
@@ -41,6 +41,7 @@
 								$_SESSION['country']='';
 								$_SESSION['department']='';
 								$_SESSION['city']='';
+								$_SESSION['photopath']='files/ava.png';
 								header('Location: /');
 								} else {
 									show_page("Error: " . $sql . "</p><p>" . $conn->error);
